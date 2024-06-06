@@ -7,26 +7,24 @@
 @Author  ：Logan
 @Date    ：2023/11/29 下午4:11 
 """
+# llama
+from llama_cpp import Llama
 # fastapi
 import uvicorn
 from fastapi import FastAPI
 # local
 from model import ChatReqItem, ChatResItem
-from llama_cpp import Llama
+from parser import parameter_parser
 
-import argparse
-
-parser = argparse.ArgumentParser(description="chat server")
-parser.add_argument('--port', type=int, default=9010, help='port')
+args = parameter_parser()
 
 app = FastAPI()
 
 # load model
 llm = Llama(
-    # model_path='../model/qwen1_5-7b-chat-q4_0.gguf',
-    model_path='../model/Meta-Llama-3-70B-Instruct.Q4_K_M.gguf',
+    model_path=args.model_path,
     n_gpu_layers=100,  # Uncomment to use GPU acceleration
-    n_ctx=8192,  # Uncomment to increase the context window
+    n_ctx=args.n_ctx,  # Uncomment to increase the context window
 )
 
 
@@ -54,7 +52,6 @@ async def my_chat(query_info: ChatReqItem):
 
 
 if __name__ == '__main__':
-    args = parser.parse_args()
     uvicorn.run(app=app,
                 host='0.0.0.0',
                 port=args.port,

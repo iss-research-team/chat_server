@@ -28,7 +28,7 @@ llm = Llama(
 )
 
 
-@app.post("/api/smart_qa/chat")
+@app.post("/chat")
 async def my_chat(query_info: ChatReqItem):
     """
     获取句子的embedding

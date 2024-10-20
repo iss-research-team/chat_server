@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
     vim \
     git \
     cmake \
-    wget
+    wget && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install Llama Factory requirements
 RUN pip3 install torch \
@@ -45,7 +47,7 @@ RUN pip3 install transformers \
     --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # Install FlashAttention
-RUN pip install flash-attn \
+RUN MAX_JOBS=4 pip install flash-attn \
     --no-build-isolation \
     --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple
 

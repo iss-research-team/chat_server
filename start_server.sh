@@ -1,31 +1,33 @@
+#!/bin/bash
 # Description: Start chat server
+SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 # chat_server
-for port in 9010 9011 9012 9013
+for port in 9010 9011
 do
   docker run \
     -d \
-    --rm \
+    --restart=always \
     --network=host \
     --name chat_server_$port \
     --gpus "device=0" \
     --shm-size 32G \
-    -v /home/mozinode4p/PycharmProjects/KG_peft:/KG_peft \
-    -w /KG_peft/chat_server \
-    llm:v1.4.1 \
-    python3 main.py --port $port
+    -v "$SCRIPT_DIR:/chat_server" \
+    -w /chat_server \
+    chat_server:v1.0 \
+    python3 main.py --port $port --model_path model/qwen2-7b-instrust-awq-q4_K_M.gguf
 done
 
-for port in 9014 9015 9016 9017
+for port in 9012 9013
 do
   docker run \
     -d \
-    --rm \
+    --restart=always \
     --network=host \
     --name chat_server_$port \
     --gpus "device=1" \
     --shm-size 32G \
-    -v /home/mozinode4p/PycharmProjects/KG_peft:/KG_peft \
-    -w /KG_peft/chat_server \
-    llm:v1.4.1 \
-    python3 main.py --port $port
+    -v "$SCRIPT_DIR:/chat_server" \
+    -w /chat_server \
+    chat_server:v1.0 \
+    python3 main.py --port $port --model_path model/qwen2-7b-instrust-awq-q4_K_M.gguf
 done

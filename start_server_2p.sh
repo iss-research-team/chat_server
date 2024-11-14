@@ -17,7 +17,7 @@ do
     python3 main.py --port $port --model_path model/qwen2-7b-instrust-awq-q4_K_M.gguf
 done
 
-for port in 9012 9013
+for port in 9014
 do
   docker run \
     -d \
@@ -29,5 +29,5 @@ do
     -v "$SCRIPT_DIR:/chat_server" \
     -w /chat_server \
     chat_server:v1.0 \
-    python3 main.py --port $port --model_path model/qwen2-7b-instrust-awq-q4_K_M.gguf
+    python3 main.py --port $port --model_path model/qwen2.5-14b-instruct-q4_k_m.gguf
 done

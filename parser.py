@@ -8,6 +8,6 @@ def parameter_parser():
     parser.add_argument('--model_path', type=str,
                         default='model/Meta-Llama-3-70B-Instruct.Q4_K_M.gguf', help='model path')
     parser.add_argument('--n_ctx', type=int,
-                        default=2048, help='n_ctx')
+                        default=8192, help='n_ctx')
 
     return parser.parse_args()

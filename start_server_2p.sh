@@ -13,7 +13,7 @@ do
     --shm-size 32G \
     -v "$SCRIPT_DIR:/chat_server" \
     -w /chat_server \
-    chat_server:v1.0 \
+    chat_server:v1.1 \
     python3 main.py --port $port --model_path model/qwen2-7b-instrust-awq-q4_K_M.gguf
 done
 
@@ -28,6 +28,6 @@ do
     --shm-size 32G \
     -v "$SCRIPT_DIR:/chat_server" \
     -w /chat_server \
-    chat_server:v1.0 \
+    chat_server:v1.1 \
     python3 main.py --port $port --model_path model/qwen2.5-14b-instruct-q4_k_m.gguf
 done

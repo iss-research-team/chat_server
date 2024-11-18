@@ -17,7 +17,7 @@ do
     python3 main.py --port $port --model_path model/qwen2-7b-instrust-awq-q4_K_M.gguf
 done
 
-for port in 9014
+for port in 9020 9021
 do
   docker run \
     -d \

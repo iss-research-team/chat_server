@@ -14,6 +14,8 @@ from pydantic import BaseModel
 class ChatReqItem(BaseModel):
     inputs: str
     history: list
+    temperature: float = 0.7
+    max_tokens: int = 2048
 
 
 class ChatResItem(BaseModel):

@@ -37,6 +37,8 @@ async def my_chat(query_info: ChatReqItem):
     """
     inputs = query_info.inputs
     history = query_info.history
+    temperature = query_info.temperature
+    max_tokens = query_info.max_tokens
 
     # add history
     if history:
@@ -46,8 +48,9 @@ async def my_chat(query_info: ChatReqItem):
     try:
         output = llm.create_chat_completion(
             messages=history,
-            max_tokens=2048,
-            temperature=0.7)
+            max_tokens=max_tokens,
+            temperature=temperature
+        )
         output = output['choices'][0]['message']['content'].strip()
         return ChatResItem(code=200, msg="success", data=output)
     except Exception as e:

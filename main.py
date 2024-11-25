@@ -43,6 +43,8 @@ async def my_chat(query_info: ChatReqItem):
     # add history
     if history:
         history.append({'role': 'user', 'content': inputs})
+    else:
+        history = [{'role': 'user', 'content': inputs}]
 
     # output
     try:

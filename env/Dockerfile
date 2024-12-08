@@ -23,3 +23,22 @@ RUN pip3 install ninja \
 # Install llama-cpp-python
 RUN CMAKE_ARGS="-DGGML_CUDA=on -DCMAKE_BUILD_RPATH=/usr/lib/x86_64-linux-gnu:/usr/local/cuda-12.4/compat" \
     pip install llama-cpp-python
+
+# install other requirements
+RUN pip3 install fastapi  \
+    uvicorn[standard]  \
+    jinja2  \
+    aiofiles  \
+    numpy  \
+    pandas  \
+    requests  \
+    python-multipart  \
+    openpyxl  \
+    python-docx  \
+    pymysql  \
+    aiomysql  \
+    apscheduler  \
+    cryptography  \
+    redis  \
+    py2neo \
+    -U --no-cache-dir -i https://pypi.tuna.tsinghua.edu.cn/simple

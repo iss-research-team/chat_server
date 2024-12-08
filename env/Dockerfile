@@ -23,6 +23,3 @@ RUN pip3 install ninja \
 # Install llama-cpp-python
 RUN CMAKE_ARGS="-DGGML_CUDA=on -DCMAKE_BUILD_RPATH=/usr/lib/x86_64-linux-gnu:/usr/local/cuda-12.4/compat" \
     pip install llama-cpp-python
-
-COPY /home/mozinode4p/PycharmProjects/fd_system/chat_system /chat_system
-WORKDIR /chat_system

@@ -1,0 +1,8 @@
+model/
+env_ollama/
+.idea/
+.vscode/
+start_ollama.sh
+stop_ollama.sh
+start_server.sh
+stop_server.sh
